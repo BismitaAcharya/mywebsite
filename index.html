@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat Gaurav Yatra Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bharat Gaurav Yatra Quiz</h1>
+    </header>
+    <div class="container">
+        <!-- Admin Panel -->
+        <div class="panel" id="adminPanel">
+            <h2>Admin Panel</h2>
+            <form id="setupForm" onsubmit="setupPasscode(event)">
+                <label for="adminPasscode">Set Admin Passcode:</label>
+                <input type="text" id="adminPasscode" placeholder="Enter a passcode" required>
+                <button type="submit">Set Passcode</button>
+            </form>
+            <form id="questionForm" onsubmit="addQuestion(event)" style="display: none;">
+                <label for="question">Question:</label>
+                <input type="text" id="question" required>
+                
+                <label for="option1">Option 1:</label>
+                <input type="text" id="option1" required>
+                
+                <label for="option2">Option 2:</label>
+                <input type="text" id="option2" required>
+                
+                <label for="option3">Option 3:</label>
+                <input type="text" id="option3" required>
+                
+                <label for="correctOption">Correct Option (1-3):</label>
+                <input type="number" id="correctOption" min="1" max="3" required>
+                
+                <button type="submit">Add Question</button>
+            </form>
+            <div id="questionList"></div>
+            <h3>Stored Scorecards</h3>
+            <div id="scoreList"></div>
+            <button onclick="downloadScores()">Download Scores</button>
+            <button onclick="switchToUserPanel()">Switch to User Panel</button>
+        </div>
+
+        <!-- User Panel -->
+        <div class="panel" id="userPanel" style="display: none;">
+            <h2>User Panel</h2>
+            <div id="userForm">
+                <label for="username">Enter your name:</label>
+                <input type="text" id="username" placeholder="Your Name" required>
+
+                <label for="userClass">Enter your class:</label>
+                <input type="text" id="userClass" placeholder="Your Class" required>
+
+                <button onclick="startQuiz()">Start Quiz</button>
+            </div>
+            <div id="quizSection" style="display: none;">
+                <div id="quizContent"></div>
+                <button onclick="submitQuiz()">Submit</button>
+            </div>
+            <div id="scoreSection" style="display: none;">
+                <h3>Scorecard</h3>
+                <p><strong>Name:</strong> <span id="displayName"></span></p>
+                <p><strong>Class:</strong> <span id="displayClass"></span></p>
+                <p id="score"></p>
+                <div id="answerSummary"></div>
+                <button onclick="restartQuiz()">Restart Quiz</button>
+            </div>
+            <button onclick="promptAdminAccess()">Switch to Admin Panel</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
